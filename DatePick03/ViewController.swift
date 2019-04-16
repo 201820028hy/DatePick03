@@ -9,12 +9,26 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var lbDate: UILabel!
+    @IBOutlet weak var Pick: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let locale = Locale(identifier: "ko_Ko")
+        Pick.locale = locale
+        
+        Pick.datePickerMode = UIDatePicker.Mode.time//date로 하면 날짜 나옴
     }
 
-
+    @IBAction func DatePick(_ sender: Any) {
+        let selected = Pick.date
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "a HH : mm"
+        lbDate.text = formatter.string(from: selected)
+    }
+    
 }
 
